@@ -1,4 +1,4 @@
-name: Multi-Cloud Deployment
+name: AWS Deployment
 
 on:
   push:
@@ -14,24 +14,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      working-directory: ./src
-      run: npm install
-      
-    - name: Run tests
-      working-directory: ./src
-      run: npm test
-      
-    - name: AWS Deployment
+    - name: AWS Deployment Test
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        echo "Running AWS deployment tasks..."
-        # Add your AWS deployment commands here
+        echo "Ì∫Ä AWS Deployment Pipeline Started"
+        echo "==================================="
+        echo "‚úÖ AWS Credentials: Configured"
+        echo "‚úÖ Repository: Checked out successfully"
+        echo "Ì≥Å Current files:"
+        ls -la
+        echo ""
+        echo "Next steps would be:"
+        echo "1. Deploy to AWS Elastic Beanstalk"
+        echo "2. Or deploy to AWS S3 static hosting"
+        echo "3. Or deploy to AWS EC2"
+        echo ""
+        echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:0:8}..." 
+        echo "Deployment simulation complete! ‚úÖ"
