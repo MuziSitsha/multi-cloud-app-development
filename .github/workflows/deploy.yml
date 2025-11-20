@@ -21,9 +21,11 @@ jobs:
         cache: 'npm'
         
     - name: Install dependencies
+      working-directory: ./src
       run: npm install
       
     - name: Run tests
+      working-directory: ./src
       run: npm test
       
     - name: AWS Deployment
