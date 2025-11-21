@@ -7,49 +7,49 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
         cache: 'npm'
-        
+
     - name: Install dependencies
       run: npm install
-      
+
     - name: Run tests
       run: npm test
-      
+
     - name: Deploy to AWS
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'us-east-1'
       run: |
-        echo "íº€ Starting AWS Deployment..."
-        echo "í³¦ Application Details:"
+        echo "=== Starting AWS Deployment ==="
+        echo "Application Details:"
         echo "   - Node.js Version: $(node --version)"
         echo "   - NPM Version: $(npm --version)"
         echo "   - Main File: server.js"
         echo "   - Port: 3000"
-        
+
         # Install AWS CLI
-        echo "ï¿½ï¿½ Installing AWS CLI..."
+        echo "--- Installing AWS CLI ---"
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip -q awscliv2.zip
         sudo ./aws/install
-        
+
         # Test AWS connection
-        echo "í´— Testing AWS connection..."
+        echo "--- Testing AWS connection ---"
         aws sts get-caller-identity
-        
+
         echo "âœ… AWS Deployment setup complete!"
         echo ""
         echo "Ready to deploy to:"
-        echo "í´¹ AWS Elastic Beanstalk - For Node.js web apps"
-        echo "í´¹ AWS EC2 - For full server control"
-        echo "í´¹ AWS S3 + CloudFront - For static hosting"
+        echo "â€¢ AWS Elastic Beanstalk - For Node.js web apps"
+        echo "â€¢ AWS EC2 - For full server control"
+        echo "â€¢ AWS S3 + CloudFront - For static hosting"
