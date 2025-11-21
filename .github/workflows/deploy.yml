@@ -30,7 +30,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'us-east-1'
       run: |
-        echo "Ì∫Ä Starting AWS Deployment..."
+        echo "=== Starting AWS Deployment ==="
         echo "Application Details:"
         echo "   - Node.js Version: $(node --version)"
         echo "   - NPM Version: $(npm --version)"
@@ -38,18 +38,18 @@ jobs:
         echo "   - Port: 3000"
 
         # Install AWS CLI
-        echo "Ì≥¶ Installing AWS CLI..."
+        echo "--- Installing AWS CLI ---"
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip -q awscliv2.zip
         sudo ./aws/install
 
         # Test AWS connection
-        echo "Ì¥ê Testing AWS connection..."
+        echo "--- Testing AWS connection ---"
         aws sts get-caller-identity
 
-        echo "‚úÖ AWS Deployment setup complete!"
+        echo "SUCCESS: AWS Deployment setup complete!"
         echo ""
         echo "Ready to deploy to:"
-        echo "‚Ä¢ AWS Elastic Beanstalk - For Node.js web apps"
-        echo "‚Ä¢ AWS EC2 - For full server control"
-        echo "‚Ä¢ AWS S3 + CloudFront - For static hosting"
+        echo "- AWS Elastic Beanstalk - For Node.js web apps"
+        echo "- AWS EC2 - For full server control"
+        echo "- AWS S3 + CloudFront - For static hosting"
