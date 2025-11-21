@@ -3,8 +3,6 @@ name: AWS Deployment
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   deploy:
@@ -14,22 +12,44 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: AWS Deployment Test
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Deploy to AWS
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1'
       run: |
-        echo "Ì∫Ä AWS Deployment Pipeline Started"
-        echo "==================================="
-        echo "‚úÖ AWS Credentials: Configured"
-        echo "‚úÖ Repository: Checked out successfully"
-        echo "Ì≥Å Current files:"
-        ls -la
+        echo "Ì∫Ä Starting AWS Deployment..."
+        echo "Ì≥¶ Application Details:"
+        echo "   - Node.js Version: $(node --version)"
+        echo "   - NPM Version: $(npm --version)"
+        echo "   - Main File: server.js"
+        echo "   - Port: 3000"
+        
+        # Install AWS CLI
+        echo "ÔøΩÔøΩ Installing AWS CLI..."
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip -q awscliv2.zip
+        sudo ./aws/install
+        
+        # Test AWS connection
+        echo "Ì¥ó Testing AWS connection..."
+        aws sts get-caller-identity
+        
+        echo "‚úÖ AWS Deployment setup complete!"
         echo ""
-        echo "Next steps would be:"
-        echo "1. Deploy to AWS Elastic Beanstalk"
-        echo "2. Or deploy to AWS S3 static hosting"
-        echo "3. Or deploy to AWS EC2"
-        echo ""
-        echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:0:8}..." 
-        echo "Deployment simulation complete! ‚úÖ"
+        echo "Ready to deploy to:"
+        echo "Ì¥π AWS Elastic Beanstalk - For Node.js web apps"
+        echo "Ì¥π AWS EC2 - For full server control"
+        echo "Ì¥π AWS S3 + CloudFront - For static hosting"
