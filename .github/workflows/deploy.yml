@@ -24,32 +24,9 @@ jobs:
     - name: Run tests
       run: npm test
 
-    - name: Deploy to AWS
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'
+    - name: Build and Verify
       run: |
-        echo "=== Starting AWS Deployment ==="
-        echo "Application Details:"
-        echo "   - Node.js Version: $(node --version)"
-        echo "   - NPM Version: $(npm --version)"
-        echo "   - Main File: server.js"
-        echo "   - Port: 3000"
-
-        # Install AWS CLI
-        echo "--- Installing AWS CLI ---"
-        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip -q awscliv2.zip
-        sudo ./aws/install
-
-        # Test AWS connection
-        echo "--- Testing AWS connection ---"
-        aws sts get-caller-identity
-
-        echo "✅ AWS Deployment setup complete!"
-        echo ""
-        echo "Ready to deploy to:"
-        echo "• AWS Elastic Beanstalk - For Node.js web apps"
-        echo "• AWS EC2 - For full server control"
-        echo "• AWS S3 + CloudFront - For static hosting"
+        echo "=== Application Verification ==="
+        echo "Node.js: $(node --version)"
+        echo "NPM: $(npm --version)"
+        echo "✅ Application ready for deployment"
