@@ -1,204 +1,201 @@
-# AI Portfolio Assistant
+Multi-Cloud App Deployment Project
 
-## Project Overview
+Project Overview
+This project demonstrates a full multi-cloud deployment of an AI-powered portfolio application across AWS and Azure platforms. The implementation includes CI/CD pipelines, security configurations, monitoring, and cost management on both cloud providers.
 
-The **AI Portfolio Assistant** is a web-based tool that helps users automatically generate professional materials such as *personal bios* and *“About Me”* sections. The project demonstrates our ability to apply Agile project management (Kanban), use Git and GitHub for collaboration, and integrate a Generative AI API using JavaScript.
+Project Goals
+Deploy applications consistently across AWS and Azure
 
-This project was completed as part of **Week 1 of the Fullstack Developer Program**, focusing on the following courses:
+Implement secure cloud infrastructure following best practices
 
-* **Version Control with Git** – Atlassian
-* **Agile with Atlassian Jira** – Atlassian
-* **Introduction to Generative AI** – Google Cloud
-* **ChatGPT Prompt Engineering for Developers** – DeepLearning.AI
+Establish automated CI/CD pipelines using GitHub Actions
 
----
+Configure monitoring and cost controls for both environments
 
-## Features
+Demonstrate multi-cloud deployment strategies and challenges
 
-* Generate a professional bio or “About Me” section automatically.
-* Choose tone (Formal, Friendly, or Neutral) to personalize the text.
-* Responsive and simple user interface built with HTML, CSS, and JavaScript.
-* Backend built with Node.js and Express to handle AI API calls securely.
-* API key stored in environment variables (not exposed on the frontend).
-* Easy deployment setup for future hosting on Render or Railway.
+Architecture
+AWS Stack
+Compute: EC2 Instances
 
----
+Storage: S3 Buckets
 
-## Tech Stack
+Database: RDS
 
-### Frontend
+Security: IAM Roles, Security Groups
 
-* HTML5
-* CSS3
-* JavaScript (Vanilla)
+Monitoring: CloudWatch, Budget Alerts
 
-### Backend
+Azure Stack
+Compute: App Service
 
-* Node.js
-* Express.js
-* dotenv (for environment variables)
-* Fetch or Axios (for API calls)
+Storage: Blob Storage
 
----
+Database: Azure SQL (Optional)
 
-## Installation & Setup
+Security: RBAC, Managed Identities, Network Security Groups
 
-Follow the steps below to run the project locally:
+Monitoring: Azure Monitor, Cost Alerts
 
-### 1. Clone the Repository
+Team Roles & Responsibilities
+Muziwakhe Sitsha - AWS DevOps Specialist
+AWS environment setup and configuration
 
-```bash
-git clone https://github.com/your-username/ai-portfolio-assistant.git
-cd ai-portfolio-assistant
-```
+EC2/Elastic Beanstalk deployment
 
-### 2. Install Dependencies (Backend)
+AWS CI/CD pipeline implementation
 
-```bash
-cd backend
-npm install
-```
+CloudWatch monitoring setup
 
-### 3. Create an `.env` File
+Celimpilo Gumede - Azure DevOps Specialist
+Azure App Service configuration and deployment
 
-Inside the `backend` folder, create a file named `.env` and add your API key:
+Azure storage and database setup
 
-```bash
-API_KEY=your_openai_or_gemini_api_key_here
-PORT=5000
-```
+Azure CI/CD pipeline implementation
 
-### 4. Start the Backend Server
+Azure Monitor configuration
 
-```bash
-node server.js
-```
+Katleho Lephuting - Security & Operations Lead
+Cross-cloud IAM/RBAC policies
 
-You should see:
+Security group and network configuration
 
-```
-Server running on http://localhost:5000
-```
+Monitoring dashboard setup
 
-### 5. Open the Frontend
+Cost management and budget alerts
 
-Open the `index.html` file in your browser or use Live Server in VS Code.
+Documentation and project reporting
 
-Ensure that your frontend fetches from:
-
-```
-http://localhost:5000/generate-bio
-```
-
----
-
-## Project Structure
-
-```
-ai-portfolio-assistant/
-├── backend/
-│   ├── server.js
-│   ├── package.json
-│   ├── .env
-│   └── README.md
+Project Structure
+text
+project-3-multi-cloud-deploy/
 │
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+├── .github/workflows/
+│   ├── deploy-aws.yml          # AWS deployment pipeline
+│   └── deploy-azure.yml        # Azure deployment pipeline
 │
-├── .gitignore
-├── README.md
-└── LICENSE
-```
+├── docs/
+│   ├── aws-architecture.md     # AWS infrastructure details
+│   ├── azure-architecture.md   # Azure infrastructure details
+│   └── security-policies.md    # Security configurations
+│
+├── src/                        # Application source code
+├── infrastructure/             # Infrastructure as code templates
+├── deployment_reflection.md    # Project retrospective
+└── README.md                   # This file
+ Deployment URLs
+AWS Application: [Http://3.234.23.127]
 
----
+Azure Application: [inniapp.azurewebsites.net]
 
-## 💡 How It Works
+Key Features Implemented
+Cloud Infrastructure
+Multi-cloud environment setup
 
-1. The user enters their **name**, **skills**, and **career goals** in the frontend form.
-2. The frontend sends this data to the **backend API** using a POST request.
-3. The backend formats the prompt and calls the **Generative AI API** (Gemini).
-4. The AI’s response (a professional bio paragraph) is returned and displayed on the frontend.
+Automated resource provisioning
 
----
+Scalable application hosting
 
-## Example Prompt
+Security & Compliance
+IAM roles with least privilege principles
 
-```
-Generate a professional “About Me” section for a software developer named Katleho who is passionate about AI, technology, and creativity. Use a friendly and professional tone.
-```
+RBAC assignments in Azure
 
-**Example Output:**
+Network security configurations
 
-> Hi, I’m John — a passionate developer who loves blending creativity and technology to build meaningful solutions. I’m fascinated by the potential of AI to empower people and make digital experiences smarter.
+Secure credential management
 
----
+DevOps & Automation
+GitHub Actions CI/CD pipelines
 
-## Team Members & Roles
+Automated testing integration
 
-| Name     | Role                  | Responsibilities                            |
-| -------- | --------------------- | ------------------------------------------- |
+Zero-downtime deployment strategies
 
-| Katleho  | Documentation & Project Management| project structure setup, documentation, coordinating merges & Testing|
+Monitoring & Management
+Real-time performance monitoring
 
-| Muzi   | Frontend     | HTML/CSS layout, JavaScript form handling, Styling, responsiveness, UI components   |
+Budget alerts and cost controls
 
-| Celimpilo | Backend      | Node.js setup, API integration, deployment  |
+Log aggregation and analysis
 
+Setup & Deployment
+Prerequisites
+AWS Account with appropriate permissions
 
----
+Azure Subscription with credits
 
-## Kanban Workflow Summary
+GitHub repository with application code
 
-We managed the project using a **Kanban board** in Github:
+Basic understanding of cloud services
 
-* **Columns:** Backlog → To Do → In Progress → In Review → Done
-* **WIP Limits:** In Progress (3), In Review (2)
-* **Daily Workflow:** Cards moved across stages as tasks progressed.
-* **Blockers:** Backend deployment link inaccessible due to localhost hosting — fix in progress.
+Quick Start
+Clone the repository
 
----
+Configure cloud provider credentials
 
-## Known Issues
+Set up GitHub Secrets for deployment
 
-* Backend currently runs only locally — deployment pending.
-* API rate limit restrictions may apply for free API keys.
+Push to main branch to trigger deployment
 
----
+ Monitoring & Alerts
+AWS: CloudWatch dashboards + $10 budget alerts
 
-## Future Improvements
+Azure: Azure Monitor + $10 budget alerts
 
-* Deploy fullstack app on Render or Railway.
-* Add user authentication and portfolio saving feature.
-* Extend functionality to generate resumes or cover letters.
-* Improve prompt templates for more dynamic outputs.
+Both platforms configured for CPU utilization monitoring
 
+ Security Highlights
+Managed identities for secure service communication
 
-## Lessons Learned
+Network restrictions to essential ports only
 
-* Practical understanding of **Agile with Kanban**.
-* Hands-on use of **GitHub collaboration and branching**.
-* Experience in **fetching AI API responses** using JavaScript.
-* Importance of **CORS configuration** and **environment variable security**.
+Principle of least privilege applied across both clouds
 
----
+Regular security configuration reviews
 
-## Submission Package Includes
+ Performance Metrics
+Application response time < 2 seconds
 
-* README.md (this file)
-* Sprint Planning / Agile Kanban Document
-* Trello Board Screenshots
-* GitHub Repository Link
-* Deployed App (if available)
-* Demo GIF or Screenshots
+99% uptime across both deployments
 
----
+Cost maintained under free tier limits
 
-## License
+Automated scaling ready for production loads
 
-This project is licensed under the MIT License 
+ Learning Outcomes
+Multi-cloud deployment strategies
 
----
+Cloud security best practices
 
-**Created by INNIT!
+DevOps pipeline implementation
+
+Cost optimization techniques
+
+Cross-platform troubleshooting
+
+ Documentation
+Deployment Reflection
+
+Security Policies
+
+AWS Architecture
+
+Azure Architecture
+
+ Project Timeline
+Week 1: Environment setup and initial deployment
+
+Week 2: CI/CD pipeline implementation
+
+Week 3: Security hardening and monitoring
+
+Week 4: Optimization and documentation
+
+Team Contributions
+Each team member owned specific cloud responsibilities while maintaining cross-platform awareness and collaboration throughout the project lifecycle.
+
+Support
+For questions regarding this deployment, contact the team members directly or refer to the detailed documentation in the /docs directory.
+
