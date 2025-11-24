@@ -1,0 +1,32 @@
+name: Deploy to Azure App Service
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'INNIAPP'
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+
+    - name: Success message
+      run: |
+        echo "🎉 Deployment completed!"
+        echo "🌐 Live at: https://inniapp.azurewebsites.net"
